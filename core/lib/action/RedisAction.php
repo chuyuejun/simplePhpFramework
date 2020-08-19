@@ -13,10 +13,6 @@ class RedisAction
     //公有方法，用于获取实例
     public static function getInstance($server = '')
     {
-        //配置连接的IP、端口、以及相应的数据库
-        if (empty($server)) {
-            $server = conf::all('redis');
-        }
         //判断实例有无创建，没有的话创建实例并返回，有的话直接返回
         if(!(self::$instance instanceof Client)) {
             self::$instance = new Client($server);

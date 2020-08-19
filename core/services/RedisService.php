@@ -8,12 +8,10 @@ class RedisService
 {
     private function __construct(){}
 
-    public static function strategy($server = '')
+    public static function strategy($drive = 'redis_one')
     {
         //配置连接的IP、端口、以及相应的数据库
-        if (empty($server)) {
-            $server = conf::all('redis');
-        }
+        $server = conf::all('redis')[$drive] ?? '';
         return action\RedisAction::getInstance($server);
     }
 
