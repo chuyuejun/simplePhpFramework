@@ -1,4 +1,5 @@
 <?php
+//redis config
 return [
 
     'redis_one' => [
@@ -12,7 +13,7 @@ return [
         'host'     => '116.62.187.224',
         'password' => 'gpvEBjml',
         'port'     => 6379,
-        'database' => 0
+        'database' => 2
     ],
 
 ];

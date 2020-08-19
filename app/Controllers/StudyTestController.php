@@ -14,20 +14,18 @@ use core\services\RedisService;
 class StudyTestController extends BaseController
 {
 
-    public $server;
-    public $node;
-
     public function test(request $request)
     {
         $redis = RedisService::strategy();
 
         $res = $redis->setex('abc', 100, 'ceshi');
+        $a = $request->post('a', 'ci');
+        $b = $request->get('d');
         //$res = $redis->get('abc');
         var_dump($res);exit;
 
         return $this->returnSuccessResponse(['a' =>'dwd']);
-        $a = $request->post('a', 'ci');
-        $b = $request->get('d');
+
     }
 
 
