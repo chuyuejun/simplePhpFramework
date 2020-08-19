@@ -38,7 +38,7 @@ class app
                 exit;
             }
             $ctrl->$action($request);
-            log::log('controller:'.$ctrlClass.'   '.'action:'.$action);
+            log::log('controller:' . $ctrlClass . '   ' . 'action:' . $action);
         } else {
             self::viewError();
             exit;
@@ -62,13 +62,10 @@ class app
     static public function load($class)
     {
         //自动加载类库
-        //new \core\route();
-        //$class = '\core\route';
-        //PHPTEST.'/core/route.php';
         if(isset(self::$classMap[$class])) {
             return true;
         } else {
-            $class = str_replace('\\','/',$class);
+            $class = str_replace('\\', '/', $class);
             $file = PHPTEST . $class . '.php';
             if(is_file($file)) {
                 include $file;
@@ -79,9 +76,9 @@ class app
         }
     }
 
-    public function assign($name,$value)
+    public function assign($name, $value)
     {
-        $this->assign[$name]=$value;
+        $this->assign[$name] = $value;
     }
 
 
@@ -98,10 +95,7 @@ class app
     {
        $file_path = APP . '/views/' . $file;
        if(is_file($file_path)){
-           //extract 把数组打散,每一个键值对都是一个
-           /*extract($this->assign);
-               include $file;*/
-           //使用twig模板引擎
+           //使用twig模板引擎 extract
            $loader = new \Twig_Loader_Filesystem(APP . '/views');
            $twig = new \Twig_Environment($loader, array(
                'cache' => PHPTEST . './log/twig',

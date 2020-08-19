@@ -7,11 +7,9 @@
  */
 namespace app\model;
 
-use core\lib\model;
-
-class LinkModel extends model
+class LinkModel extends BaseModel
 {
-    public $table='link';
+    public $table = 'link';
 
     public function lists()
     {

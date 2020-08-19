@@ -12,10 +12,10 @@
  * 2.加载函数库
  * 3.启动框架
  */
-define('PHPTEST',realpath(' /'));
-define('CORE',PHPTEST.'./core');
-define('APP',PHPTEST.'./app');
-define('MODULE','app');
+define('PHPTEST', realpath(' /'));
+define('CORE', PHPTEST . './core');
+define('APP', PHPTEST . './app');
+define('MODULE', 'app');
 
 define('DEBUG',true);
 //设置时区(prc 中国)
@@ -33,9 +33,9 @@ if(DEBUG){
     $whoops->pushHandler($option);
     $whoops->register();
     //配置错误等级,debug开启返回错误信息
-    ini_set('display_error','On');
+    ini_set('display_error', 'On');
 }else{
-    ini_set('display_error','Off');
+    ini_set('display_error', 'Off');
 }
 
 //封装的打印方法
@@ -43,9 +43,9 @@ include CORE.'/common/function.php';
 //引入核心文件
 include CORE.'/app.php';
 
-//当创建一个对象不存在时,实现imooc::load方法
+//实现类自动加载
 spl_autoload_register('\core\app::load');
-
+//加载路由配置
 include 'ApiRoute.php';
 
 \core\app::run();
