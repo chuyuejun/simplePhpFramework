@@ -21,7 +21,8 @@ class StudyTestController extends BaseController
     {
         $redis = RedisService::strategy();
 
-        $res = $redis->get('a');
+        $res = $redis->setex('abc', 100, 'ceshi');
+        //$res = $redis->get('abc');
         var_dump($res);exit;
 
         return $this->returnSuccessResponse(['a' =>'dwd']);
