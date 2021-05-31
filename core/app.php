@@ -14,7 +14,8 @@ use core\lib\route;
 
 class app
 {
-    public static $classMap = array();
+    public static $classMap = [];
+
     public $assign;
 
     public static function run()
@@ -24,16 +25,16 @@ class app
         //加载路由
         $route = new route();
         $ctrlClass = $route->ctrl;
-        $action    = $route->action;
+        $action = $route->action;
         $ctrlFile = APP . '/Controllers/' . $ctrlClass . '.php';
-        $cltrlClass = '\\' . MODULE . '\Controllers\\' . $ctrlClass;
-        if(is_file($ctrlFile)) {
+        $controllerClass = '\\' . MODULE . '\Controllers\\' . $ctrlClass;
+        if (is_file($ctrlFile)) {
             $request = new request();
             include $ctrlFile;
-            $ctrl = new $cltrlClass($request);
+            $ctrl = new $controllerClass($request);
             // 获取所有类方法
             $classAll = self::get_this_class_methods($ctrl);
-            if(!in_array($action, $classAll)){
+            if (!in_array($action, $classAll)) {
                 self::viewError();
                 exit;
             }
@@ -50,7 +51,8 @@ class app
      * @param class int Y N 类名
      * @return array3 array 本类的所有方法构成的一个数组
      */
-    public static function get_this_class_methods($class) {
+    public static function get_this_class_methods($class)
+    {
         // 判断是否存在父类
         if ($parent_class = get_parent_class($class)) {
             return array_diff(get_class_methods($class), get_class_methods($parent_class));
@@ -62,12 +64,12 @@ class app
     static public function load($class)
     {
         //自动加载类库
-        if(isset(self::$classMap[$class])) {
+        if (isset(self::$classMap[$class])) {
             return true;
         } else {
             $class = str_replace('\\', '/', $class);
             $file = PHPTEST . $class . '.php';
-            if(is_file($file)) {
+            if (is_file($file)) {
                 include $file;
                 self::$classMap[$class] = $class;
             } else {
@@ -85,7 +87,8 @@ class app
     /*
      * 404页面
      */
-    public static function viewError(){
+    public static function viewError()
+    {
         $a = new app();
         $a->display('404.html');
         exit;
@@ -93,16 +96,16 @@ class app
 
     public function display($file)
     {
-       $file_path = APP . '/views/' . $file;
-       if(is_file($file_path)){
-           //使用twig模板引擎 extract
-           $loader = new \Twig_Loader_Filesystem(APP . '/views');
-           $twig = new \Twig_Environment($loader, array(
-               'cache' => PHPTEST . './log/twig',
-           ));
-           $template = $twig->load($file);
-           $template->display($this->assign ? $this->assign : []);
-       }
+        $file_path = APP . '/views/' . $file;
+        if (is_file($file_path)) {
+            //使用twig模板引擎 extract
+            $loader = new \Twig_Loader_Filesystem(APP . '/views');
+            $twig = new \Twig_Environment($loader, array(
+                'cache' => PHPTEST . './log/twig',
+            ));
+            $template = $twig->load($file);
+            $template->display($this->assign ? $this->assign : []);
+        }
     }
 
 

@@ -5,5 +5,5 @@
 $route = \core\lib\action\RouteAction::getInstance();
 
 $route->post('index/index', 'IndexController@index');
-$route->post('index/cheShi', 'IndexController@cheShi');
+$route->post('index/phpTest', 'IndexController@test');
 $route->any('study/test', 'StudyTestController@test');

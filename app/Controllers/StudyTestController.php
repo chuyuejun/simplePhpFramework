@@ -16,18 +16,26 @@ class StudyTestController extends BaseController
 
     public function test(request $request)
     {
-        $redis = RedisService::strategy();
-
-        $res = $redis->setex('abc', 100, 'ceshi');
+       // $redis = RedisService::strategy();
+       // $res = $redis->setex('abc', 100, 'ceshi');
         $a = $request->post('a', 'ci');
         $b = $request->get('d');
-        //$res = $redis->get('abc');
-        var_dump($res);exit;
-
+        $this->assign('a', $a);
+        $this->assign('b', $b);
+        $this->display('index');
+        //return $this->render('index');
+        //$res = $redis->get('abc');t
+        //var_dump($res);exit;
         return $this->returnSuccessResponse(['a' =>'dwd']);
-
     }
 
+
+    public function get_sum($n) {
+        if ($n == 1) {
+            return  1;
+        }
+        return $n + $this->get_sum($n-1);
+    }
 
 
 
