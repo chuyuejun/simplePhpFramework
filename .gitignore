@@ -1,3 +1,11 @@
+.env
+.DS_Store
+*.swp
+.php*
+!.php_cs.dist
+composer.lock
+composer.phar
+
+.idea/
 vendor/
 log/
-.env
