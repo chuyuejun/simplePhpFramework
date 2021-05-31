@@ -32,12 +32,15 @@ class route
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
                 case 'GET':
-                    $route = $allRoute[$_SERVER['REQUEST_METHOD']][$path] ?? '';
+                    $route = $allRoute[$_SERVER['REQUEST_METHOD'] . $path] ?? '';
                     if (empty($route)) {
                         app::viewError();
                     }
-                    $this->ctrl = array_shift($route);
-                    $this->action = array_pop($route);
+                    $action = explode('@', $route['action']['uses']);
+                    if (count($action) != 2)
+                        throw new \Exception('Parameter error');
+                    $this->ctrl = array_shift($action);
+                    $this->action = array_pop($action);
                     break;
                 default:
                     throw new \Exception('Unsupported request method');

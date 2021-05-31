@@ -5,12 +5,9 @@
  * Date: 2018/6/8
  * Time: 14:18
  */
-namespace app\Controllers;
+namespace app\Controllers\api;
 
-use core\lib\conf;
-use core\lib\model;
-use app\model\LinkModel;
-use core\lib\request;
+use app\Controllers\BaseController;
 
 class IndexController extends BaseController
 {

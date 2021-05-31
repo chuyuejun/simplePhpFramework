@@ -25,7 +25,7 @@ class BaseController
     public function display($file)
     {
         $file_path = APP . '/views/' . $file . self::SUFFIX;;
-        if(is_file($file_path)){
+        if (is_file($file_path)) {
             //使用twig模板引擎
             $loader = new \Twig_Loader_Filesystem(APP . '/views');
             $twig = new \Twig_Environment($loader, array(
@@ -40,7 +40,7 @@ class BaseController
     public function render($file, $data)
     {
         $file_path = APP . '/views/' . $file . self::SUFFIX;
-        if(is_file($file_path)){
+        if (is_file($file_path)) {
             //使用twig模板引擎
             $loader = new \Twig_Loader_Filesystem(APP . '/views');
             $twig = new \Twig_Environment($loader, array(
@@ -53,11 +53,11 @@ class BaseController
         app::viewError();
     }
 
-    public function returnSuccessResponse($data = [], $msg='')
+    public function returnSuccessResponse($data = [], $msg = '')
     {
         $arr = [
             "code"    => 0,
-            "message" => $msg? $msg : "success",
+            "message" => $msg ? $msg : "success",
         ];
         $arr["data"] = $data;
         $this->addHeader();
@@ -68,8 +68,8 @@ class BaseController
     public function returnErrorResponse($status_code = 0, $message = '')
     {
         $arr = [
-            'code'      => $status_code,
-            'message'   => $message,
+            'code'    => $status_code,
+            'message' => $message,
         ];
         $this->addHeader();
         echo json_encode($arr, JSON_PARTIAL_OUTPUT_ON_ERROR);

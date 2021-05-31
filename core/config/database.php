@@ -5,18 +5,20 @@
  * Date: 2018/6/8
  * Time: 17:36
  */
-return array(
+return [
 
-    /*'DSN'=>'mysql:host=localhost;dbname=book',
-    'USERNAME'=>'root',
-    'PASSWD'=>'123456'*/
+
     // 必须配置项
-    'database_type' => 'mysql',
-    'database_name' => 'book',
-    'server' => 'localhost',
-    'username' => 'root',
-    'password' => '123456',
-    'charset' => 'utf8',
+    'mysql' => [
+        'database_type' => 'mysql',
+        'database_name' => 'book',
+        'server'        => env('DB_HOST', 'localhost'),
+        'username'      => env('DB_USERNAME', 'root'),
+        'password'      => env('DB_PASSWORD', '123456'),
+        'charset'       => env('DB_CHARSET', 'utf8mb4'),
+        'port'          => env('DB_PORT', 3306),
+        'prefix'        => env('DB_PREFIX', ''),
+    ],
 
    /* // 可选参数
     'port' => 3306,
@@ -28,4 +30,4 @@ return array(
     'option' => [
         PDO::ATTR_CASE => PDO::CASE_NATURAL
     ]*/
-);
+];

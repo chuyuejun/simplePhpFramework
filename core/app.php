@@ -26,7 +26,7 @@ class app
         $route = new route();
         $ctrlClass = $route->ctrl;
         $action = $route->action;
-        $ctrlFile = APP . '/Controllers/' . $ctrlClass . '.php';
+        $ctrlFile = APP . '/Controllers/' . str_replace('\\', '/', $ctrlClass) . '.php';
         $controllerClass = '\\' . MODULE . '\Controllers\\' . $ctrlClass;
         if (is_file($ctrlFile)) {
             $request = new request();

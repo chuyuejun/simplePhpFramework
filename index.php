@@ -12,7 +12,6 @@
  * 2.加载函数库
  * 3.启动框架
  */
-
 define('PHPTEST', realpath(' /'));
 define('CORE', PHPTEST . './core');
 define('APP', PHPTEST . './app');
@@ -20,9 +19,8 @@ define('MODULE', 'app');
 define('DEBUG', true);
 //设置时区(prc 中国)
 date_default_timezone_set('prc');
-//phpinfo();exit;
 //加载composer类库
-include 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 if (DEBUG) {
     $whoops = new \Whoops\Run;
@@ -39,13 +37,13 @@ if (DEBUG) {
 }
 
 //封装的打印方法
-include CORE . '/common/function.php';
+require CORE . '/common/function.php';
 //引入核心文件
-include CORE . '/app.php';
+require CORE . '/app.php';
 //实现类自动加载
 spl_autoload_register('\core\app::load');
 //加载路由配置
-include PHPTEST . 'route/apiRoute.php';
+require PHPTEST . 'route/apiRoute.php';
 
 \core\app::run();
 
