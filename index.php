@@ -43,7 +43,16 @@ require CORE . '/app.php';
 //实现类自动加载
 spl_autoload_register('\core\app::load');
 //加载路由配置
+$route = \core\lib\action\RouteAction::getInstance();
 require PHPTEST . 'route/apiRoute.php';
+
+//$route->middleware([
+//    'locale' => [
+//        app\middleware\ServerHalt::class,
+//        App\Http\Middleware\SecurityDefense::class
+//    ]
+//]);
+
 
 \core\app::run();
 

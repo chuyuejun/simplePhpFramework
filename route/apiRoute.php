@@ -2,7 +2,7 @@
 /*
  * 访问路由
  */
-$route = \core\lib\action\RouteAction::getInstance();
+//$route = \core\lib\action\RouteAction::getInstance();
 
 
 //$route->post('index/index', 'IndexController@index');

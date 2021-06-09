@@ -8,9 +8,13 @@
 
 namespace core;
 
+use app\middleware\CorsMiddleware;
+use app\middleware\ServerHalt;
+use core\lib\action\RouteAction;
 use core\lib\log;
 use core\lib\request;
 use core\lib\route;
+use core\support\Collection;
 
 class app
 {
@@ -26,6 +30,18 @@ class app
         $route = new route();
         $ctrlClass = $route->ctrl;
         $action = $route->action;
+        //加载中间件
+        //全局中间件
+//        $middleware = RouteAction::getInstance()->get_middleware();
+//        $pipe_arr = [ServerHalt::class];
+//        $callback = array_reduce($pipe_arr, function ($stack, $pipe) {
+//            return function () use ($stack, $pipe) {
+//                return (new $pipe)->handle($stack);
+//            };
+//        }, function() {
+//            echo "(6)请求向路由器传递，返回响应.".'<br>';
+//        });
+//        call_user_func($callback);
         $ctrlFile = APP . '/Controllers/' . str_replace('\\', '/', $ctrlClass) . '.php';
         $controllerClass = '\\' . MODULE . '\Controllers\\' . $ctrlClass;
         if (is_file($ctrlFile)) {

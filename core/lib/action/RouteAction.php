@@ -6,6 +6,19 @@ use core\support\Arr;
 class RouteAction
 {
     /**
+     * All of the global middleware for the application.
+     *
+     * @var array
+     */
+    protected $middleware = [];
+
+    /**
+     * All of the route specific middleware short-hands.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [];
+    /**
      * All of the named routes and URI pairs.
      *
      * @var array
@@ -366,6 +379,32 @@ class RouteAction
 
         return $action;
     }
+
+    /**
+     * Add new middleware to the application.
+     *
+     * @param  Closure|array  $middleware
+     * @return $this
+     */
+    public function middleware($middleware)
+    {
+        if (! is_array($middleware)) {
+            $middleware = [$middleware];
+        }
+
+        $this->middleware = array_unique(array_merge($this->middleware, $middleware));
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function get_middleware() {
+        return  $this->middleware;
+    }
+
+
 
 
 }
